@@ -41,10 +41,12 @@ const SlotMachinePro = () => {
   
   // 新增：任务和等级系统状态
   const [showQuestPanel, setShowQuestPanel] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [scarcityTrigger, setScarcityTrigger] = useState(null);
   const [showAdButton, setShowAdButton] = useState(false);
   const [showDonateButton, setShowDonateButton] = useState(false);
   const [showBankruptModal, setShowBankruptModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [useBMAC, setUseBMAC] = useState(true); // 是否使用 BMAC Overlay
   
   // Refs
@@ -431,6 +433,7 @@ const SlotMachinePro = () => {
   /**
    * 下注改变处理
    */
+  // eslint-disable-next-line no-unused-vars
   const handleBetChange = (newBet) => {
     setBet(newBet);
   };
@@ -438,6 +441,7 @@ const SlotMachinePro = () => {
   /**
    * 自动旋转处理（长按触发）
    */
+  // eslint-disable-next-line no-unused-vars
   const handleAutoSpin = () => {
     if (!spinning && balance >= bet) {
       spin();
