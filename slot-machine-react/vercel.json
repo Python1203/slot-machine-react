@@ -1,17 +1,8 @@
 {
   "buildCommand": "npm run build",
   "devCommand": "npm start",
-  "installCommand": "npm install",
+  "installCommand": "npm ci --only=production && npm install",
   "outputDirectory": "build",
   "framework": "create-react-app",
-  "regions": ["iad1"],
-  "env": {
-    "REACT_APP_GAME_NAME": "Professional React Slot Machine",
-    "REACT_APP_RTP": "97.5"
-  },
-  "functions": {
-    "api/spin.py": {
-      "runtime": "@vercel/python@4.2.0"
-    }
-  }
+  "regions": ["iad1"]
 }
