@@ -1,0 +1,585 @@
+/* QuestPanel.css - 任务与成长系统样式 */
+
+.quest-panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.quest-panel {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 20px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.quest-panel-header {
+  padding: 25px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quest-panel-header h2 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.close-btn {
+  background: transparent;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  color: #ffd700;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: rotate(90deg);
+}
+
+/* 标签页 */
+.quest-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 15px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  color: #aaa;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.5);
+  color: #fff;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a1a2e;
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* 内容区 */
+.quest-content {
+  padding: 25px;
+}
+
+/* 每日任务 */
+.quest-info-bar {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffd700;
+  font-size: 0.9rem;
+}
+
+.quest-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.quest-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.quest-card.completed {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.quest-card.claimed {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+}
+
+.quest-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.quest-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.quest-info {
+  flex: 1;
+}
+
+.quest-info h4 {
+  margin: 0 0 5px 0;
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+.quest-info p {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.claim-btn {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a1a2e;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+.claim-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+}
+
+.claimed-badge {
+  color: #51cf66;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.quest-progress {
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  background: rgba(0, 0, 0, 0.5);
+  height: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ffed4e);
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.progress-text {
+  color: #aaa;
+  font-size: 0.85rem;
+  text-align: right;
+  display: block;
+}
+
+.quest-reward {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+.xp-badge, .coin-badge {
+  background: rgba(255, 215, 0, 0.2);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* 成就 */
+.achievements-list {
+  display: grid;
+  gap: 15px;
+}
+
+.achievement-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 15px;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.achievement-card.locked {
+  opacity: 0.5;
+  filter: grayscale(0.8);
+}
+
+.achievement-card.unlocked {
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.achievement-info h4 {
+  margin: 0 0 5px 0;
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+.achievement-info p {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.achievement-progress {
+  margin-top: 10px;
+}
+
+.achievement-reward {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.reward-badge {
+  font-size: 2rem;
+}
+
+.badge-name {
+  background: rgba(255, 215, 0, 0.2);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+/* 等级信息 */
+.level-header {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.level-display {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.level-number {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.level-title {
+  color: #aaa;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.level-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.stat-item {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-item .label {
+  display: block;
+  color: #aaa;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.stat-item .value {
+  display: block;
+  color: #ffd700;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.xp-progress-bar {
+  background: rgba(0, 0, 0, 0.5);
+  height: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.xp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+  background-size: 200% 100%;
+  animation: xpShimmer 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes xpShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 等级加成 */
+.level-bonuses h3 {
+  color: #ffd700;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.bonus-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.bonus-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.bonus-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bonus-card span:last-child {
+  color: #fff;
+  font-size: 0.9rem;
+  display: block;
+}
+
+/* 勋章 */
+.badges-section h3 {
+  color: #ffd700;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.badge-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.badge-item:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.badge-item.bronze { border-color: #cd7f32; }
+.badge-item.silver { border-color: #c0c0c0; }
+.badge-item.gold { border-color: #ffd700; }
+.badge-item.diamond { border-color: #b9f2ff; }
+.badge-item.legendary { border-color: #a335ee; }
+.badge-item.special { border-color: #ff6b6b; }
+
+.badge-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.badge-name {
+  font-size: 0.85rem;
+  color: #fff;
+  display: block;
+}
+
+.no-badges, .no-features {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+  font-style: italic;
+}
+
+/* 特性 */
+.features-section h3 {
+  color: #ffd700;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.feature-item {
+  background: rgba(82, 207, 102, 0.1);
+  border: 2px solid rgba(82, 207, 102, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  color: #51cf66;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .quest-panel {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .quest-tabs {
+    grid-template-columns: 1fr;
+  }
+  
+  .quest-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .claim-btn {
+    width: 100%;
+  }
+  
+  .level-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .bonus-grid,
+  .badges-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievement-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* 通知动画 */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 15px;
+  padding: 20px 30px;
+  color: #ffd700;
+  font-weight: bold;
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+  z-index: 3000;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification.success {
+  border-color: #51cf66;
+  box-shadow: 0 10px 40px rgba(82, 207, 102, 0.4);
+}
+
+.notification.gold {
+  border-color: #ffd700;
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6);
+}
+
+.notification.legendary {
+  border-color: #a335ee;
+  box-shadow: 0 10px 40px rgba(163, 53, 238, 0.6);
+}

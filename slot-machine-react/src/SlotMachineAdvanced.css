@@ -1,0 +1,330 @@
+/* SlotMachineAdvanced.css - 专业版样式 */
+
+.slot-machine-advanced {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  font-family: 'Arial', sans-serif;
+}
+
+/* 头部 */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  margin: 0 0 10px 0;
+}
+
+.tech-badge {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 游戏信息 */
+.game-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-box .label {
+  display: block;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.info-box .value {
+  display: block;
+  color: #ffd700;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.info-box.win {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Canvas 卷轴容器 */
+.reels-container-canvas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 12px;
+  border: 3px solid #ffd700;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+}
+
+.reel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.reel-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reel-canvas.spinning {
+  filter: blur(2px);
+}
+
+/* 控制按钮 */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.control-btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.bet-down {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.bet-down:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.spin-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  font-size: 1.3rem;
+  padding: 15px 50px;
+}
+
+.spin-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5);
+}
+
+.spin-btn:active:not(:disabled) {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.bet-up {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.bet-up:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+/* 消息显示 */
+.message-display {
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffd700;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  min-height: 24px;
+}
+
+/* 赔率表 */
+.paytable {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.paytable h3 {
+  color: #ffd700;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.paytable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.pay-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pay-item span:first-child {
+  font-size: 2rem;
+  display: block;
+}
+
+.pay-item span:nth-child(2) {
+  color: #ccc;
+  font-size: 0.9rem;
+  display: block;
+  margin: 5px 0;
+}
+
+.payout-value {
+  color: #ffd700 !important;
+  font-weight: bold;
+  font-size: 1.1rem !important;
+}
+
+/* GEO Footer */
+.geo-footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.85rem;
+  border-top: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.geo-footer p {
+  margin: 5px 0;
+}
+
+.last-win-time {
+  color: #ffd700 !important;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .slot-machine-advanced {
+    padding: 15px;
+  }
+  
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .tech-badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .game-info {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .info-box .value {
+    font-size: 1.3rem;
+  }
+  
+  .reels-container-canvas {
+    padding: 10px;
+    gap: 5px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .control-btn {
+    width: 100%;
+  }
+  
+  .spin-btn {
+    padding: 15px;
+  }
+  
+  .paytable-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 中奖动画关键帧 */
+@keyframes win-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.win-animation {
+  animation: win-pulse 0.5s ease-in-out infinite;
+}
+
+/* 加载状态 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

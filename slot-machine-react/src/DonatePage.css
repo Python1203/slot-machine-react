@@ -1,0 +1,528 @@
+/* DonatePage.css - 赛博朋克黄金风格捐赠页面 */
+
+.donate-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+.donate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 头部 */
+.donate-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.donate-title {
+  font-size: 3.5rem;
+  margin: 0 0 20px 0;
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+.donate-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ccc;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 章节通用样式 */
+.donate-section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin: 0 0 20px 0;
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2s ease-in-out infinite;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+/* 特色卡片网格 */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  color: #ffd700;
+  margin: 0 0 10px 0;
+}
+
+.feature-card p {
+  color: #aaa;
+  margin: 0;
+}
+
+/* 钱包卡片 */
+.wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.wallet-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.wallet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+}
+
+.wallet-card.recommended {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a1a2e;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+}
+
+.wallet-card h3 {
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.wallet-address {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.wallet-address code {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #ffd700;
+  word-break: break-all;
+  font-family: 'Courier New', monospace;
+}
+
+.copy-btn {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a1a2e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+}
+
+.wallet-features {
+  margin-bottom: 20px;
+}
+
+.feature-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ddd;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.suggested-amount {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ccc;
+  padding: 15px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 8px;
+}
+
+.suggested-amount strong {
+  color: #ffd700;
+  font-size: 1.3rem;
+}
+
+/* 赞助等级 */
+.sponsorship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.sponsorship-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.sponsorship-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+}
+
+.plan-level {
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin: 0 0 15px 0;
+}
+
+.plan-amount {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.benefits-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #ddd;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.check-icon {
+  color: #51cf66;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* 财务表格 */
+.finance-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.finance-table th,
+.finance-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.finance-table th {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.finance-table tr:hover {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.total-row {
+  background: rgba(255, 215, 0, 0.1);
+  font-weight: bold;
+}
+
+.total-row td {
+  color: #ffd700;
+}
+
+/* 资金储备 */
+.reserve-status {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.reserve-status h3 {
+  color: #ffd700;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.reserve-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.reserve-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.reserve-item .label {
+  display: block;
+  color: #aaa;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.reserve-item .value {
+  display: block;
+  color: #ffd700;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.update-time {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* PGP 部分 */
+.pgp-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+
+.pgp-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.pgp-info h3 {
+  color: #ffd700;
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+}
+
+.pgp-details {
+  list-style: none;
+  padding: 0;
+}
+
+.pgp-details li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+.pgp-details li:last-child {
+  border-bottom: none;
+}
+
+.pgp-key-block {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  overflow-x: auto;
+}
+
+.pgp-key-block pre {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #ffd700;
+  line-height: 1.4;
+}
+
+/* 警告部分 */
+.warning-section {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.warning-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.warning-card {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+.warning-card h3 {
+  color: #ff6b6b;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.warning-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.warning-card ul li {
+  padding: 10px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #ddd;
+}
+
+.warning-card ul li::before {
+  content: '⚠️';
+  position: absolute;
+  left: 0;
+}
+
+/* 页脚 */
+.donate-footer {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  border-top: 2px solid rgba(255, 215, 0, 0.3);
+  margin-top: 30px;
+}
+
+.donate-footer p {
+  margin: 10px 0;
+  color: #aaa;
+}
+
+/* 动画 */
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .donate-page {
+    padding: 20px 10px;
+  }
+
+  .donate-title {
+    font-size: 2.2rem;
+  }
+
+  .donate-section {
+    padding: 25px 15px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .features-grid,
+  .wallets-grid,
+  .sponsorship-grid,
+  .warning-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pgp-section {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-address {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .copy-btn {
+    width: 100%;
+  }
+}
