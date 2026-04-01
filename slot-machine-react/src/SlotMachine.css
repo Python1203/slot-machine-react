@@ -1,0 +1,583 @@
+/* 黄金赛博朋克未来科幻风格 */
+.slot-machine {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  font-family: 'Arial', sans-serif;
+  /* 赛博朋克渐变背景 */
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  min-height: 100vh;
+  color: #fff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 添加电路纹理效果 */
+.slot-machine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 215, 0, 0.03) 2px, rgba(255, 215, 0, 0.03) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 215, 0, 0.03) 2px, rgba(255, 215, 0, 0.03) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.main-title {
+  font-size: 4rem;
+  margin: 0;
+  font-weight: bold;
+  /* 黄金金属光泽 */
+  background: linear-gradient(
+    45deg,
+    #ffd700 0%,
+    #ffed4e 25%,
+    #ffd700 50%,
+    #ffb340 75%,
+    #ffd700 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite;
+  /* 霓虹光晕 */
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
+          drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+          drop-shadow(0 0 30px rgba(255, 215, 0, 0.4));
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.rtp-badge {
+  display: inline-block;
+  /* 赛博朋克渐变 */
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 107, 0.2));
+  padding: 12px 30px;
+  border-radius: 30px;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* 金色边框 */
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(10px);
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.4),
+      inset 0 0 20px rgba(255, 215, 0, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 30px rgba(255, 215, 0, 0.6),
+      inset 0 0 30px rgba(255, 215, 0, 0.2);
+  }
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.info-box {
+  /* 赛博朋克玻璃面板 */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  padding: 20px 35px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(255, 215, 0, 0.1),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.info-box .label {
+  display: block;
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.info-box .value {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: bold;
+  /* 黄金数字效果 */
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2s ease-in-out infinite;
+}
+
+.info-box.win .value {
+  /* 中奖时变绿色 */
+  background: linear-gradient(45deg, #00ff88, #00ffa3, #00ff88);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 0.5s ease-in-out infinite;
+}
+
+.reels-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  /* 赛博朋克金属边框 */
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #1a1a2e);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 
+    inset 0 0 50px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 25px;
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* 卷轴四角装饰 */
+.reels-container::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    transparent 45%, 
+    rgba(255, 215, 0, 0.8) 50%, 
+    transparent 55%);
+  background-size: 20px 20px;
+  border-radius: 25px;
+  z-index: -1;
+  animation: cornerRotate 4s linear infinite;
+}
+
+@keyframes cornerRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.reel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* 金属质感 */
+  background: linear-gradient(180deg, #2c3e50, #34495e, #2c3e50);
+  padding: 18px;
+  border-radius: 15px;
+  min-width: 90px;
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.reel.spinning {
+  animation: reelSpin 0.1s infinite;
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes reelSpin {
+  0% { transform: translateY(-3px); }
+  50% { transform: translateY(3px); }
+  100% { transform: translateY(-3px); }
+}
+
+.symbol {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  /* 赛博朋克符号背景 */
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  border-radius: 12px;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 符号高光效果 */
+.symbol::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 215, 0, 0.2) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: symbolGlow 3s ease-in-out infinite;
+}
+
+@keyframes symbolGlow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.symbol.winner {
+  /* 中奖符号效果 */
+  background: linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700);
+  animation: winnerPulse 0.8s infinite;
+  box-shadow: 
+    0 0 40px rgba(255, 215, 0, 1),
+    0 0 60px rgba(255, 215, 0, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+@keyframes winnerPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 40px rgba(255, 215, 0, 1),
+      0 0 60px rgba(255, 215, 0, 0.8);
+  }
+  50% { 
+    box-shadow: 
+      0 0 60px rgba(255, 215, 0, 1),
+      0 0 80px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.win-lines {
+  background: rgba(0, 255, 136, 0.1);
+  border: 2px solid #00ff88;
+  border-radius: 15px;
+  padding: 18px;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 136, 0.4),
+    inset 0 0 20px rgba(0, 255, 136, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.win-line-info {
+  font-size: 1.3rem;
+  margin: 8px 0;
+  animation: slideIn 0.5s ease-out;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-30px) scale(0.9); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.message-display {
+  text-align: center;
+  font-size: 1.8rem;
+  padding: 25px;
+  margin-bottom: 30px;
+  /* 赛博朋克消息框 */
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
+  border-radius: 20px;
+  min-height: 40px;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.2),
+    inset 0 0 30px rgba(255, 215, 0, 0.05);
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 35px;
+  position: relative;
+  z-index: 1;
+}
+
+.control-btn {
+  padding: 18px 45px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(255, 215, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.control-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.control-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.control-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.control-btn:active:not(:disabled) {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.bet-down {
+  /* 红色渐变按钮 */
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.spin-btn {
+  /* 黄金主按钮 */
+  background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+  color: #0f0c29;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  font-size: 1.6rem;
+  padding: 20px 60px;
+  box-shadow: 
+    0 10px 30px rgba(255, 215, 0, 0.5),
+    0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.spin-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ffed4e, #ffd700, #ffed4e);
+  box-shadow: 
+    0 15px 40px rgba(255, 215, 0, 0.7),
+    0 0 50px rgba(255, 215, 0, 0.5);
+}
+
+.bet-up {
+  /* 绿色渐变按钮 */
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.paytable {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  padding: 30px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 215, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.paytable h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2s ease-in-out infinite;
+}
+
+.paytable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.pay-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.pay-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.pay-item span {
+  display: block;
+  margin: 5px 0;
+}
+
+.pay-item span:first-child {
+  font-size: 2.5rem;
+}
+
+.payout-value {
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+.geo-footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 30px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 107, 107, 0.05));
+  border-radius: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+.geo-footer p {
+  margin: 10px 0;
+  opacity: 0.8;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.last-win-time {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 215, 0, 0.3);
+  font-size: 1.1rem;
+  color: #ffd700;
+  font-weight: bold;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .reels-container {
+    padding: 20px;
+  }
+  
+  .symbol {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+  
+  .control-btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+  
+  .spin-btn {
+    padding: 15px 40px;
+    font-size: 1.3rem;
+  }
+}
+
+/* 添加粒子闪烁效果 */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffd700;
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}

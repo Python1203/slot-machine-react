@@ -212,8 +212,8 @@ const SlotMachine = () => {
   return (
     <div className="slot-machine">
       <div className="header">
-        <h1>🎰 专业老虎机 🎰</h1>
-        <div className="rtp-badge">RTP {RTP}% | 评分 4.9/5.0</div>
+        <h1 className="main-title">🎰 888 - 恭喜发财 💰</h1>
+        <div className="rtp-badge">RTP {RTP}% | ⭐ 评分 4.9/5.0 | 🚀 赛博财富</div>
       </div>
 
       <div className="game-info">
