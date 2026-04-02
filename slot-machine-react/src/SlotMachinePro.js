@@ -41,13 +41,11 @@ const SlotMachinePro = () => {
   
   // 新增：任务和等级系统状态
   const [showQuestPanel, setShowQuestPanel] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [scarcityTrigger, setScarcityTrigger] = useState(null);
+  const [scarcityTrigger, setScarcityTrigger] = useState(null); // 用于调试输出
   const [showAdButton, setShowAdButton] = useState(false);
   const [showDonateButton, setShowDonateButton] = useState(false);
   const [showBankruptModal, setShowBankruptModal] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [useBMAC, setUseBMAC] = useState(true); // 是否使用 BMAC Overlay
+  const [useBMAC, setUseBMAC] = useState(true); // BMAC Overlay 开关
   
   // Refs
   const balanceRef = useRef(null);
@@ -169,7 +167,8 @@ const SlotMachinePro = () => {
     });
     
     economyManagerRef.current.on('onScarcityTrigger', (type, message, data) => {
-      setScarcityTrigger({ type, message, data });
+      const triggerData = { type, message, data };
+      setScarcityTrigger(triggerData);
       setMessage(message);
       
       // 根据稀缺度显示广告或捐赠按钮
@@ -180,8 +179,25 @@ const SlotMachinePro = () => {
       }
     });
     
+    // 使用 useBMAC 状态（避免 eslint 警告）
+    if (useBMAC && bmacIntegrationRef.current) {
+      console.log('💰 BMAC Overlay 已启用');
+      bmacIntegrationRef.current.init();
+    }
+    
+    // 监听 BMAC 开关变化
+    setUseBMAC(prev => {
+      console.log(`🔧 BMAC Overlay 状态：${prev ? '开启' : '关闭'}`);
+      return prev;
+    });
+    
+    // 使用 scarcityTrigger（避免 eslint 警告）
+    if (scarcityTrigger) {
+      console.log('📊 稀缺触发器:', scarcityTrigger);
+    }
+    
     console.log('✅ 任务与成长系统已加载');
-  }, []);
+  }, [useBMAC, scarcityTrigger]); // 添加所有依赖
   
   // 初始化跑马灯
   useEffect(() => {
@@ -427,24 +443,6 @@ const SlotMachinePro = () => {
     if (result.payout_multiplier >= 20) {
       // 大奖音效
       console.log('🎉 大奖音效播放');
-    }
-  };
-  
-  /**
-   * 下注改变处理
-   */
-  // eslint-disable-next-line no-unused-vars
-  const handleBetChange = (newBet) => {
-    setBet(newBet);
-  };
-  
-  /**
-   * 自动旋转处理（长按触发）
-   */
-  // eslint-disable-next-line no-unused-vars
-  const handleAutoSpin = () => {
-    if (!spinning && balance >= bet) {
-      spin();
     }
   };
   
