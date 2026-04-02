@@ -1,4 +1,5 @@
 {
   "installCommand": "cd slot-machine-react && npm install",
-  "buildCommand": "cd slot-machine-react && npm run build"
+  "buildCommand": "cd slot-machine-react && npm run build",
+  "outputDirectory": "slot-machine-react/build"
 }
