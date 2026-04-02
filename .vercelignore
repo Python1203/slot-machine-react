@@ -1,0 +1,7 @@
+.idea/
+*.py
+api/
+slot-machine-api/
+*.md
+.python-version/
+.vercel/
