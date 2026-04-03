@@ -27,12 +27,12 @@ const REELS = 5;
 const ROWS = 3;
 const SPIN_DURATION = 2000;
 const RTP = 97.5;
-const API_BASE_URL = 'https://slot-machine-api.onrender.com';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8001';
 
 const SlotMachinePro = () => {
   // 游戏状态
   const [balance, setBalance] = useState(1000);
-  const [bet, setBet] = useState(10);
+  const [bet, setBet] = useState(88); // 默认赌注改为 88
   const [win, setWin] = useState(0);
   const [message, setMessage] = useState('🎰 Pro 版 - 任务系统 + 等级成长');
   const [spinning, setSpinning] = useState(false);
@@ -96,8 +96,12 @@ const SlotMachinePro = () => {
     questSystemRef.current = new QuestSystem();
     economyManagerRef.current = new EconomyManager(levelSystemRef.current);
     
-    // 初始化广告 SDK
-    adSDKRef.current = new AdSDK({ testMode: true });
+    // 初始化广告 SDK（测试模式）
+    adSDKRef.current = new AdSDK({ 
+      testMode: true,
+      platform: 'google', // 默认使用 Google AdMob
+      debug: true // 启用调试日志
+    });
     adSDKRef.current.init();
     
     // 初始化捐赠管理器
@@ -215,6 +219,113 @@ const SlotMachinePro = () => {
     }
   }, []);
   
+  // 初始化下注滑块交互
+  useEffect(() => {
+    const slider = betSliderRef.current;
+    if (!slider) return;
+    
+    let isDragging = false;
+    let longPressTimer = null;
+    
+    const updateBetFromPosition = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const percentage = Math.max(0, Math.min(1, x / rect.width));
+      
+      // 根据滑块位置计算赌注（10-100）
+      const newBet = Math.round(10 + percentage * 90);
+      const validBet = Math.min(newBet, balance);
+      
+      if (validBet >= 10 && validBet <= 100) {
+        setBet(validBet);
+      }
+      
+      // 更新滑块背景渐变
+      const gradientPercentage = ((validBet - 10) / 90) * 100;
+      slider.style.background = `linear-gradient(to right, #667eea 0%, #764ba2 ${gradientPercentage}%, #ccc ${gradientPercentage}%, #ccc 100%)`;
+    };
+    
+    const handleMouseDown = (e) => {
+      isDragging = true;
+      updateBetFromPosition(e.clientX);
+      
+      // 长按检测（2 秒后自动旋转）
+      longPressTimer = setTimeout(() => {
+        if (isDragging && !spinning) {
+          spin(); // 自动旋转
+        }
+      }, 2000);
+    };
+    
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      updateBetFromPosition(e.clientX);
+    };
+    
+    const handleMouseUp = () => {
+      isDragging = false;
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+      }
+    };
+    
+    // 触摸事件支持
+    const handleTouchStart = (e) => {
+      isDragging = true;
+      updateBetFromPosition(e.touches[0].clientX);
+      
+      longPressTimer = setTimeout(() => {
+        if (isDragging && !spinning) {
+          spin();
+        }
+      }, 2000);
+    };
+    
+    const handleTouchMove = (e) => {
+      if (!isDragging) return;
+      updateBetFromPosition(e.touches[0].clientX);
+    };
+    
+    const handleTouchEnd = () => {
+      isDragging = false;
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+      }
+    };
+    
+    // 添加事件监听
+    slider.addEventListener('mousedown', handleMouseDown);
+    slider.addEventListener('mousemove', handleMouseMove);
+    slider.addEventListener('mouseup', handleMouseUp);
+    slider.addEventListener('mouseleave', handleMouseUp);
+    
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
+    
+    // 初始化滑块位置
+    const initialGradientPercentage = ((bet - 10) / 90) * 100;
+    slider.style.background = `linear-gradient(to right, #667eea 0%, #764ba2 ${initialGradientPercentage}%, #ccc ${initialGradientPercentage}%, #ccc 100%)`;
+    
+    // 清理
+    return () => {
+      slider.removeEventListener('mousedown', handleMouseDown);
+      slider.removeEventListener('mousemove', handleMouseMove);
+      slider.removeEventListener('mouseup', handleMouseUp);
+      slider.removeEventListener('mouseleave', handleMouseUp);
+      
+      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchmove', handleTouchMove);
+      slider.removeEventListener('touchend', handleTouchEnd);
+      
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+      }
+    };
+  }, [bet, balance, spinning]); // eslint-disable-line react-hooks/exhaustive-deps
+  
   // 初始化心理学管理器
   useEffect(() => {
     psychologicalManager.current = new PsychologicalHooks({
@@ -259,7 +370,7 @@ const SlotMachinePro = () => {
   /**
    * 核心旋转逻辑 - 整合所有高级功能
    */
-  const spin = async () => {
+  const spin = useCallback(async () => {
     if (balance < bet) {
       setMessage('余额不足！请充值后继续游戏。');
       
@@ -363,12 +474,12 @@ const SlotMachinePro = () => {
       
       setSpinning(false);
     }
-  };
+  }, [bet, balance]); // eslint-disable-line react-hooks/exhaustive-deps
   
   /**
    * 播放旋转动画
    */
-  const playSpinAnimation = async (targetReels) => {
+  const playSpinAnimation = useCallback(async (targetReels) => {
     return new Promise(resolve => {
       let startTime = Date.now();
       let animationFrame;
@@ -400,12 +511,12 @@ const SlotMachinePro = () => {
       
       animate();
     });
-  };
+  }, [getRandomSymbol]);
   
   /**
    * 处理中奖
    */
-  const handleWin = (totalWin, result) => {
+  const handleWin = useCallback((totalWin, result) => {
     // 更新余额（带动画）
     const newBalance = balance + totalWin;
     setBalance(newBalance);
@@ -444,13 +555,28 @@ const SlotMachinePro = () => {
       // 大奖音效
       console.log('🎉 大奖音效播放');
     }
-  };
+  }, [balance]);
   
   // 调整赌注
   const changeBet = (amount) => {
     const newBet = bet + amount;
     if (newBet >= 10 && newBet <= 100 && newBet <= balance) {
       setBet(newBet);
+    }
+  };
+  
+  // 快速调整赌注（以 88 为基准）
+  const changeBetQuick = (type) => {
+    if (type === 'min') {
+      setBet(Math.max(10, Math.min(balance, 10)));
+    } else if (type === 'max') {
+      setBet(Math.min(100, balance));
+    } else if (type === 'half') {
+      const halfBet = Math.floor(bet / 2);
+      setBet(Math.max(10, Math.min(balance, halfBet)));
+    } else if (type === 'double') {
+      const doubleBet = bet * 2;
+      setBet(Math.min(100, Math.min(balance, doubleBet)));
     }
   };
   
@@ -482,7 +608,7 @@ const SlotMachinePro = () => {
           </div>
           <div className="info-box">
             <span className="label">🎲 赌注</span>
-            <span className="value">{bet}</span>
+            <span className="value">¥{bet}</span>
           </div>
           <div className="info-box win">
             <span className="label">🏆 赢取</span>
@@ -517,6 +643,38 @@ const SlotMachinePro = () => {
             <span>¥10</span>
             <span>¥50</span>
             <span>¥100</span>
+          </div>
+          
+          {/* 快速调整按钮 */}
+          <div className="quick-bet-buttons">
+            <button 
+              className="quick-bet-btn"
+              onClick={() => changeBetQuick('min')}
+              disabled={spinning}
+            >
+              最小
+            </button>
+            <button 
+              className="quick-bet-btn"
+              onClick={() => changeBetQuick('half')}
+              disabled={spinning}
+            >
+              一半
+            </button>
+            <button 
+              className="quick-bet-btn"
+              onClick={() => changeBetQuick('double')}
+              disabled={spinning || bet * 2 > 100 || bet * 2 > balance}
+            >
+              双倍
+            </button>
+            <button 
+              className="quick-bet-btn max-btn"
+              onClick={() => changeBetQuick('max')}
+              disabled={spinning}
+            >
+              最大
+            </button>
           </div>
         </div>
         

@@ -1,10 +1,20 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import secrets  # 加密级安全随机数
 import time
 from typing import List
 
 app = FastAPI()
+
+# 配置 CORS - 允许前端跨域访问
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 开发环境允许所有来源
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  # 明确指定方法
+    allow_headers=["*"],  # 允许所有 HTTP 头
+)
 
 # 定义符号库和权重（控制 RTP 的核心）
 # 权重越高，出现概率越大。7️⃣ 和 💎 权重设低以控制大奖产出
@@ -74,6 +84,19 @@ async def spin():
         message=message
     )
 
+@app.options("/api/spin")
+async def spin_options():
+    """CORS 预检请求处理"""
+    from fastapi.responses import Response
+    return Response(
+        content="OK",
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        }
+    )
+
 @app.get("/api/health")
 async def health_check():
     """健康检查接口 - 用于监控服务状态"""
@@ -82,3 +105,16 @@ async def health_check():
         "timestamp": time.time(),
         "service": "slot-machine-api"
     }
+
+@app.options("/api/health")
+async def health_options():
+    """CORS 预检请求处理"""
+    from fastapi.responses import Response
+    return Response(
+        content="OK",
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        }
+    )

@@ -33,68 +33,12 @@
     <meta name="mobile-web-app-capable" content="yes" />
     
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!-- JSON-LD 结构化数据 - GEO 语义化核心 -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Professional React Slot Machine",
-      "alternateName": ["Casino Slots", "Free Slot Machine", "React Casino Game"],
-      "url": "https://your-domain.com",
-      "image": "https://your-domain.com/slot-machine-preview.jpg",
-      "description": "Professional-grade React slot machine game with 97.5% RTP (Return to Player). Features 5 reels, 3 rows, multiple winning combinations. Perfect for casino enthusiasts.",
-      "applicationCategory": "GameApplication",
-      "applicationSubCategory": "Casino Game",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "description": "Free to play - No download required"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "150",
-        "reviewCount": "150",
-        "bestRating": "5.0",
-        "worstRating": "1.0"
-      },
-      "featureList": "5 Reels, 3 Rows, RTP 97.5%, Instant Win, Mobile Compatible, No Download",
-      "screenshot": "https://your-domain.com/screenshot.jpg",
-      "downloadUrl": "https://your-domain.com",
-      "softwareVersion": "2026.1.0",
-      "releaseNotes": "Latest RTP certified 97.5%. Enhanced animations. Mobile optimized.",
-      "contentRating": "18+",
-      "interactionStatistic": {
-        "@type": "InteractionCounter",
-        "interactionType": "https://schema.org/GameAction",
-        "userInteractionCount": "10000"
-      },
-      "gamePlatform": "Web Browser",
-      "numberOfPlayers": "1",
-      "playMode": "SinglePlayer"
-    }
-    </script>
-    
-    <!-- 游戏特定 Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Game",
-      "name": "Professional React Slot Machine",
-      "genre": "Casino",
-      "subGenre": "Slot Machine",
-      "audience": {
-        "@type": "PeopleAudience",
-        "minAge": "18"
-      },
-      "gameTip": "Match 3 or more symbols on a payline to win. Higher value symbols = bigger payouts!"
-    }
-    </script>
-    
+
+    <!-- JSON-LD 动态注入脚本（解决 CSP 限制） -->
+    <script src="%PUBLIC_URL%/json-ld-inject.js"></script>
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
     <!-- Pusher WebSocket 库 - 实时中奖推送 -->
     <script src="https://js.pusher.com/8.2/pusher.min.js"></script>
     <!-- Buy Me a Coffee Widget - 丝滑捐赠体验 -->
@@ -107,29 +51,24 @@
       data-x_margin="18" 
       data-y_margin="18">
     </script>
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!-- Ad Link - Affiliate Marketing -->
+    <script>var ConverlyCustomData = {channelId: null};</script>
+    <script async defer src="https://cdn.affiliates.one/production/adlinks/d1f2b34b1b2af6f1307e2cf19ee2db2a2fe92ecf0ce52ddda31299b2d33794ba.js"></script>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- Adotone Ad Slots - 横幅广告 -->
+    <script type="text/javascript">
+      cv_ad_options = {
+        ad_slot_id: "168da52541d9fd5e7ff9139323209cc8",
+        ad_width: "728",
+        ad_height: "90",
+        mode: "production"
+      };
+    </script>
+    <script text="text/javascript" src="//cdn.adotone.com/adslots/va.ads.js"></script>
   </body>
 </html>
